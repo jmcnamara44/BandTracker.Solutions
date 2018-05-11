@@ -10,7 +10,7 @@ _This project will use C# to build and work with databases for a band-venue trac
 
 ## Project Specs
 
-_Webpage makes a valid connection with the database._
+_Webpage makes a valid connection with the database for each table._
 _Users can add a new concert venue._
 _Users can add a new band._
 _Users can see a list of all concert venues._
@@ -27,8 +27,7 @@ _Users can delete a concert venue they have entered._
 
 * _Clone repository from GitHub_
 * _Open .cshtml files into your browser of choice_
-* _CREATE DATABASE jimmy_mcnamara;_
-* _USE jimmy_mcnamara;_
+
 
 
 ## Known Bugs
