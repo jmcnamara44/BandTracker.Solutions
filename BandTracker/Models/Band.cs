@@ -148,6 +148,20 @@ namespace BandTracker.Models
         conn.Dispose();
       }
     }
+    public void DeleteBand()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM bands WHERE id = @thisId; DELETE FROM bands_venues WHERE band_id = @thisId;";
+      cmd.Parameters.Add(new MySqlParameter("@thisId", _id));
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
     public override bool Equals(System.Object otherBand)
     {
         if (!(otherBand is Band))

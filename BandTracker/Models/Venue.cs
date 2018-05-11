@@ -84,6 +84,20 @@ namespace BandTracker.Models
         }
         return bands;
     }
+    public void DeleteVenue()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM venues WHERE id = @thisId; DELETE FROM bands_venues WHERE venue_id = @thisId;";
+      cmd.Parameters.Add(new MySqlParameter("@thisId", _id));
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
     public static List<Venue> GetAllVenues()
     {
       List<Venue> allVenues = new List<Venue>{};
