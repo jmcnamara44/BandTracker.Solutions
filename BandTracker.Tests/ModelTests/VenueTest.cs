@@ -13,7 +13,8 @@ namespace BandTracker.Tests
     {
         public void Dispose()
         {
-
+          Band.DeleteAllBands();
+          Venue.DeleteAllVenues();
         }
         public VenueTests()
         {
@@ -29,6 +30,18 @@ namespace BandTracker.Tests
           //Assert
           Assert.AreEqual(0, result);
         }
+        [TestMethod]
+        public void SaveVenue_SaveVenueToDb_True()
+        {
+          //Arrange
+          Venue testVenue = new Venue("Fenway");
+          //Act
+          testVenue.SaveVenue();
+          List<Venue> allVenues = Venue.GetAllVenues();
+          List<Venue> manualVenueList = new List<Venue>{testVenue};
 
+          //Assert
+          CollectionAssert.AreEqual(manualVenueList, allVenues);
+        }
     }
 }

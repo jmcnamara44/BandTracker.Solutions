@@ -23,6 +23,23 @@ namespace BandTracker.Models
     {
       return _id;
     }
+    public void SaveBand()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO bands (name) VALUES (@bandName);";
+
+      cmd.Parameters.Add(new MySqlParameter("@bandName", _bandName));
+      cmd.ExecuteNonQuery();
+      _id = (int) cmd.LastInsertedId;
+      conn.Close();
+      if (conn !=null)
+      {
+          conn.Dispose();
+      }
+    }
     public static List<Band> GetAllBands()
     {
       List<Band> allBands = new List<Band>{};
@@ -44,6 +61,19 @@ namespace BandTracker.Models
         conn.Dispose();
       }
       return allBands;
+    }
+    public static void DeleteAllBands()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM bands;";
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
     }
     public override bool Equals(System.Object otherBand)
     {

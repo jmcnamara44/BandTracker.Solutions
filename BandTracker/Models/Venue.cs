@@ -23,6 +23,23 @@ namespace BandTracker.Models
     {
       return _id;
     }
+    public void SaveVenue()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO venues (name) VALUES (@venueName);";
+
+      cmd.Parameters.Add(new MySqlParameter("@venueName", _venueName));
+      cmd.ExecuteNonQuery();
+      _id = (int) cmd.LastInsertedId;
+      conn.Close();
+      if (conn !=null)
+      {
+          conn.Dispose();
+      }
+    }
     public static List<Venue> GetAllVenues()
     {
       List<Venue> allVenues = new List<Venue>{};
@@ -44,6 +61,19 @@ namespace BandTracker.Models
         conn.Dispose();
       }
       return allVenues;
+    }
+    public static void DeleteAllVenues()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM venues;";
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
     }
     public override bool Equals(System.Object otherVenue)
     {
