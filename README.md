@@ -27,8 +27,10 @@ _Users can delete a concert venue they have entered._
 
 * _Clone repository from GitHub_
 * _Open .cshtml files into your browser of choice_
-
-
+* _CREATE DATABASE band_tracker;_
+* _CREATE TABLE bands (id serial PRIMARY KEY, name VARCHAR(50));_
+* _CREATE TABLE venues (id serial PRIMARY KEY, name VARCHAR(50));_
+* _CREATE TABLE bands_venues (id serial PRIMARY KEY, band_id INT(11), venue_id INT(11));_
 
 ## Known Bugs
 
@@ -36,7 +38,7 @@ _No known bugs as of now._
 
 ## Support and contact details
 
-_Contact Jimmy with any questions or comments_
+_Contact Jimmy McNamara with any questions or comments_
 
 ## Technologies Used
 
@@ -51,4 +53,4 @@ _CSharp_
 
 *Licensed through the MIT open resource agreement*
 
-Copyright (c) 2018 **_Jimmy_**
+Copyright (c) 2018 **_Jimmy McNamara_**
