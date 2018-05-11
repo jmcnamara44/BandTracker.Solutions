@@ -36,7 +36,7 @@ namespace BandTracker.Controllers
             Band newBand = Band.FindBand(Int32.Parse(Request.Form["band"]));
             Venue newVenue = Venue.FindVenue(Int32.Parse(Request.Form["venue"]));
 
-            newBand.AddVenue(newVenue);
+            newVenue.AddBand(newBand);
             return RedirectToAction("AddBandToVenue"); //i cannot figure out how to redirect the user back to the home page once they do this action.
         }
         [HttpGet("/bands-by-venue/{id}")]

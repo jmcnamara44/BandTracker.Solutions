@@ -33,10 +33,9 @@ namespace BandTracker.Controllers
         [HttpPost("/added-venue-to-band")]
         public ActionResult AddedVenueToBand()
         {
-            Band newBand = new Band(Request.Form["band"]);
-            newBand.SaveBand();
-            Venue newVenue = new Venue(Request.Form["venue"]);
-            newVenue.SaveVenue();
+            Band newBand = Band.FindBand(Int32.Parse(Request.Form["band"]));
+            Venue newVenue = Venue.FindVenue(Int32.Parse(Request.Form["venue"]));
+
             newBand.AddVenue(newVenue);
             return RedirectToAction("AddVenueToBand"); //i cannot figure out how to redirect the user back to the home page once they do this action.
         }
