@@ -16,4 +16,18 @@
   }
 </table>
 
-<!-- <h3>Is this list missing a band? Select from our list</h3> -->
+<h3>Is this list missing a band? Select from our list</h3>
+<form action='/add-band-to-venue-list/@Model["selectedVenue"].GetVenueId()' method="post">
+  <div class="form-group">
+    <label for="band">Band name</label>
+    <select class="form-control" id="band" name="band" required>
+      <option value="" disabled selected>Select a band name</option>
+      @foreach(var band in Model["allBands"])
+      {
+        <option value="@band.GetBandId()">@band.GetBandName()</option>
+      }
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+<p><a href="/all-venues">Return to all venues list</a></p>

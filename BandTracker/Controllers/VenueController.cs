@@ -13,12 +13,6 @@ namespace BandTracker.Controllers
             List<Venue> allVenues = Venue.GetAllVenues();
             return View(allVenues);
         }
-        // [HttpGet("/bands-by-venues/{id}")]
-        // public ActionResult BandByVenue(int id)
-        // {
-        //     List<Venue> allVenues = List.GetAllVenues();
-        //     return View(allVenues);
-        // }
         [HttpPost("/create-venue")]
         public ActionResult CreateVenue()
         {
@@ -51,9 +45,20 @@ namespace BandTracker.Controllers
             Dictionary<string, object> model = new Dictionary<string, object>{};
             Venue selectedVenue = Venue.FindVenue(id);
             List<Band> venueBands = selectedVenue.GetBands();
+            List<Band> allBands = Band.GetAllBands();
             model.Add("selectedVenue", selectedVenue);
             model.Add("venueBands", venueBands);
+            model.Add("allBands", allBands);
             return View(model);
+        }
+        [HttpPost("/add-band-to-venue-list/{id}")]
+        public ActionResult UpdateBandToVenueList(int id)
+        {
+            Band newBand = Band.FindBand(Int32.Parse(Request.Form["band"]));
+            Venue newVenue = Venue.FindVenue(id);
+            int newId = newVenue.GetVenueId();
+            newVenue.AddBand(newBand);
+            return RedirectToAction("VenueBands",  new { id = newId });
         }
     }
 }
