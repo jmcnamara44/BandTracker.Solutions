@@ -43,5 +43,17 @@ namespace BandTracker.Tests
           //Assert
           CollectionAssert.AreEqual(manualVenueList, allVenues);
         }
+        [TestMethod]
+        public void GetBands_GetBandFromDbForASpecificVenue_True()
+        {
+          //Arrange
+          Venue testVenue = new Venue("MSG");
+          //Act
+          testVenue.SaveVenue();
+          int bandCount = testVenue.GetBands().Count;
+
+          //Assert
+          Assert.AreEqual(0, bandCount);
+        }
     }
 }

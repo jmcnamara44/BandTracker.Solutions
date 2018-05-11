@@ -43,5 +43,18 @@ namespace BandTracker.Tests
           //Assert
           CollectionAssert.AreEqual(manualBandList, allBands);
         }
+        [TestMethod]
+        public void GetVenues_GetVenueFromDbForASpecificBand_True()
+        {
+          //Arrange
+          Band testBand = new Band("Pink Floyd");
+          //Act
+          testBand.SaveBand();
+          int venueCount = testBand.GetVenues().Count;
+
+          //Assert
+          Assert.AreEqual(0, venueCount);
+        }
+
     }
 }

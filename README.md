@@ -11,10 +11,8 @@ _This project will use C# to build and work with databases for a band-venue trac
 ## Project Specs
 
 <!-- _Webpage makes a valid connection with the database for each table._ -->
-_Users can add a new concert venue._
-_Users can add a new band._
-_Users can see a list of all concert venues._
-_Users can see a list of all bands ._
+<!-- _Users can add a new concert venue._ -->
+<!-- _Users can add a new band._ -->
 _Users can add a new concert venue to a specific band._
 _Users can add a new band to a specific concert venue._
 _Users can see a list of all concert and band venue combinations._

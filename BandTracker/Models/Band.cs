@@ -40,6 +40,50 @@ namespace BandTracker.Models
           conn.Dispose();
       }
     }
+    public void AddVenue(Venue newVenue)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO bands_venues (band_id, venue_id) VALUES (@bandId, @venueId);";
+
+      cmd.Parameters.Add(new MySqlParameter("@venueId", newVenue.GetVenueId()));
+      cmd.Parameters.Add(new MySqlParameter("@bandId", _id));
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+    public List<Venue> GetVenues()
+    {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT venues.* FROM bands
+            JOIN bands_venues ON (bands.id = bands_venues.band_id)
+            JOIN venues ON (bands_venues.venue_id = venues.id)
+            WHERE bands.id = @bandId;";
+
+        cmd.Parameters.Add(new MySqlParameter("@bandId", _id));
+        MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+        List<Venue> venues = new List<Venue>{};
+
+        while(rdr.Read())
+        {
+          int venueId = rdr.GetInt32(0);
+          string venueName = rdr.GetString(1);
+          Venue newVenue = new Venue(venueName, venueId);
+          venues.Add(newVenue);
+        }
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+        return venues;
+    }
     public static List<Band> GetAllBands()
     {
       List<Band> allBands = new List<Band>{};
@@ -67,7 +111,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM bands;";
+      cmd.CommandText = @"DELETE FROM bands; DELETE FROM bands_venues;";
       cmd.ExecuteNonQuery();
       conn.Close();
       if (conn != null)
