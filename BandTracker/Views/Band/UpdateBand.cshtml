@@ -1,0 +1,12 @@
+@{
+  Layout = "_Layout";
+}
+
+<h3>Update @Model.GetBandName()</h3>
+<form action="/band-updated/@Model.GetBandId()" method="post">
+  <div class="form-group">
+    <label for="band-name">Enter band name</label>
+    <input id="band-name" name="band-name" class="form-control" type="text" required>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>

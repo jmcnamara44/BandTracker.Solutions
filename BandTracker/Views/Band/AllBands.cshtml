@@ -6,6 +6,7 @@
   <tr>
     <th>Band ID</th>
     <th>Band Name</th>
+    <th>Update Band</th>
     <th>Delete Band</th>
   </tr>
   @foreach(var band in Model)
@@ -13,6 +14,7 @@
     <tr>
       <td>@band.GetBandId()</td>
       <td><a href="/venues-by-band/@band.GetBandId()">@band.GetBandName()</a></td>
+      <td><a href="/update-band/@band.GetBandId()">Update this band</a></td>
       <td><a href="/delete-band/@band.GetBandId()">Delete this band</a></td>
     </tr>
   }

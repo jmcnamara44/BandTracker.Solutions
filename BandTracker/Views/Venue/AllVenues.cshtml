@@ -6,6 +6,7 @@
   <tr>
     <th>Venue ID</th>
     <th>Venue Name</th>
+    <th>Update Venue</th>
     <th>Delete Venue</th>
   </tr>
   @foreach(var venue in Model)
@@ -13,6 +14,7 @@
     <tr>
       <td>@venue.GetVenueId()</td>
       <td><a href="/bands-by-venue/@venue.GetVenueId()">@venue.GetVenueName()</a></td>
+      <td><a href="/update-venue/@venue.GetVenueId()">Update this venue</a></td>
       <td><a href="/delete-venue/@venue.GetVenueId()">Delete this venue</a></td>
     </tr>
   }

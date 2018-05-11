@@ -1,0 +1,12 @@
+@{
+  Layout = "_Layout";
+}
+
+<h3>Update @Model.GetVenueName()</h3>
+<form action="/venue-updated/@Model.GetVenueId()" method="post">
+  <div class="form-group">
+    <label for="venue-name">Enter venue name</label>
+    <input id="venue-name" name="venue-name" class="form-control" type="text" required>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
