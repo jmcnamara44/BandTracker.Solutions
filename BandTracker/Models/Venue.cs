@@ -106,6 +106,35 @@ namespace BandTracker.Models
       }
       return allVenues;
     }
+    public static Venue FindVenue(int id)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM venues WHERE id = @thisId;";
+
+      cmd.Parameters.Add(new MySqlParameter("@thisId", id));
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+      int venueId =0;
+      string venueName="";
+
+      while (rdr.Read())
+      {
+        venueId = rdr.GetInt32(0);
+        venueName = rdr.GetString(1);
+      }
+      Venue foundVenue= new Venue(venueName, venueId);
+
+      conn.Close();
+      if (conn!= null)
+      {
+        conn.Dispose();
+      }
+      return foundVenue;
+    }
     public static void DeleteAllVenues()
     {
       MySqlConnection conn = DB.Connection();
