@@ -55,6 +55,26 @@ namespace BandTracker.Tests
           //Assert
           Assert.AreEqual(0, venueCount);
         }
+        [TestMethod]
+        public void AddVenue_SaveVenueToBand_True()
+        {
+          //Arrange
+          Band testBand = new Band("Explosions In The Sky");
+          Venue testVenue = new Venue("Gillete");
+          Venue testVenue1 = new Venue("Oakdale Theater");
+
+          //Act
+          testBand.SaveBand();
+          testVenue.SaveVenue();
+          testVenue1.SaveVenue();
+          testBand.AddVenue(testVenue);
+          testBand.AddVenue(testVenue1);
+          List<Venue> bandVenues = testBand.GetVenues();
+          List<Venue> manualVenueList = new List<Venue>{testVenue, testVenue1};
+
+          //Assert
+          CollectionAssert.AreEqual(manualVenueList, bandVenues);
+        }
 
     }
 }
