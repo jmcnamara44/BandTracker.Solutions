@@ -15,8 +15,8 @@ _This project will use C# to build and work with databases for a band-venue trac
 <!-- _Users can add a new band._ -->
 <!-- _Webpage makes a connection with the join table with venue class._
 _Webpage makes a connection with the join table with band class._ -->
-_Users can add a new concert venue to a specific band._
-_Users can add a new band to a specific concert venue._
+<!-- _Users can add a new concert venue to a specific band._
+_Users can add a new band to a specific concert venue._ -->
 _Users can see a list of all concert and band venue combinations._
 _Users can update a band they have entered._
 _Users can update a concert venue they have entered._

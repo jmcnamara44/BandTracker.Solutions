@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+<table style="width=100%">
+  <tr>
+    <th>Venue ID</th>
+    <th>Venue Name</th>
+  </tr>
+  @foreach(var venue in Model)
+  {
+    <tr>
+      <td>@venue.GetVenueId()</td>
+      <td><a href="/bands-by-venue/@venue.GetVenueId()">@venue.GetVenueName()</a></td>
+    </tr>
+  }
+</table>
