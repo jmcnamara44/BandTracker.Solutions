@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+<h2>@Model["selectedVenue"].GetVenueName()</h2>
+<table style="width=100%">
+  <tr>
+    <th>Band ID</th>
+    <th>Band Name</th>
+  </tr>
+  @foreach(var band in Model["venueBands"])
+  {
+    <tr>
+      <td>@band.GetBandId()</td>
+      <td>@band.GetBandName()</td>
+    </tr>
+  }
+</table>
+
+<!-- <h3>Is this list missing a band? Select from our list</h3> -->

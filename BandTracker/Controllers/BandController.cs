@@ -13,12 +13,6 @@ namespace BandTracker.Controllers
             List<Band> allBands = Band.GetAllBands();
             return View(allBands);
         }
-        // [HttpGet("/venues-by-band/{id}")]
-        // public ActionResult BandByVenue(int id)
-        // {
-        //     List<Venue> allVenues = List.GetAllVenues();
-        //     return View(allVenues);
-        // }
         [HttpPost("/create-band")]
         public ActionResult CreateBand()
         {
@@ -45,6 +39,16 @@ namespace BandTracker.Controllers
             newVenue.SaveVenue();
             newBand.AddVenue(newVenue);
             return RedirectToAction("AddVenueToBand"); //i cannot figure out how to redirect the user back to the home page once they do this action.
+        }
+        [HttpGet("/venues-by-band/{id}")]
+        public ActionResult BandVenues(int id)
+        {
+            Dictionary<string, object> model = new Dictionary<string, object>{};
+            Band selectedBand = Band.FindBand(id);
+            List<Venue> bandVenues = selectedBand.GetVenues();
+            model.Add("selectedBand", selectedBand);
+            model.Add("bandVenues", bandVenues);
+            return View(model);
         }
     }
 }
