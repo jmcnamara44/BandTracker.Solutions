@@ -15,4 +15,19 @@
     </tr>
   }
 </table>
+
+<h3>Is this list missing a venue? Select from our list</h3>
+<form action='/add-venue-to-band-list/@Model["selectedBand"].GetBandId()' method="post">
+  <div class="form-group">
+    <label for="venue">Venue name</label>
+    <select class="form-control" id="venue" name="venue" required>
+      <option value="" disabled selected>Select a venue name</option>
+      @foreach(var venue in Model["allVenues"])
+      {
+        <option value="@venue.GetVenueId()">@venue.GetVenueName()</option>
+      }
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
 <p><a href="/all-bands">Return to all bands list</a></p>
