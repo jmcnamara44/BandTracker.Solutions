@@ -26,7 +26,10 @@ _Users can delete a concert venue they have entered._
 ## Setup/Installation Requirements
 
 * _Clone repository from GitHub_
-* _Open .cshtml files into your browser of choice_
+* _Start the MAMP servers._
+* _Navigate into the project folder and run 'dotnet restore'._
+* _Run the command 'dotnet run'._
+* _Type 'http://localhost:5000' into your web browser._
 * _CREATE DATABASE band_tracker;_
 * _CREATE TABLE bands (id serial PRIMARY KEY, name VARCHAR(50));_
 * _CREATE TABLE venues (id serial PRIMARY KEY, name VARCHAR(50));_
